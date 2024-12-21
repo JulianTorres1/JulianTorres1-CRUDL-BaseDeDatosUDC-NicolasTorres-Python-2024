@@ -1,0 +1,58 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Vehículo</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="display-4 text-center">Editar Vehículo</h1>
+                <form action="{% url 'edit_vehiculo' vehiculo.num_bastidor %}" method="post" class="card card-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="nombre_modelo">Nombre del Modelo</label>
+                        <input type="text" class="form-control" id="nombre_modelo" name="nombre_modelo" value="{{ vehiculo.nombre_modelo }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="precio" value="{{ vehiculo.precio }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descuento">Descuento</label>
+                        <input type="number" class="form-control" id="descuento" name="descuento" value="{{ vehiculo.descuento }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="potencia_fiscal">Potencia Fiscal</label>
+                        <input type="number" class="form-control" id="potencia_fiscal" name="potencia_fiscal" value="{{ vehiculo.potencia_fiscal }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cilindrada">Cilindrada</label>
+                        <input type="number" class="form-control" id="cilindrada" name="cilindrada" value="{{ vehiculo.cilindrada }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="en_stock">En Stock</label>
+                        <input type="checkbox" id="en_stock" name="en_stock" {% if vehiculo.en_stock %}checked{% endif %}>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_concesionario">ID Concesionario</label>
+                        <input type="number" class="form-control" id="id_concesionario" name="id_concesionario" value="{{ vehiculo.id_concesionario }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_servicio">ID Servicio</label>
+                        <input type="number" class="form-control" id="id_servicio" name="id_servicio" value="{{ vehiculo.id_servicio }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
